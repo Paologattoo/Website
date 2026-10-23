@@ -20,4 +20,5 @@ export type ReelProps = {
   filtro?: string; // filtro CSS per il colore, es. "saturate(1.1) contrast(1.05)"
   barra?: boolean;
   volumeVideo?: number;
+  layout?: 'riempi' | 'sfondo-sfocato'; // sfondo-sfocato: video orizzontale intero al centro, sfondo sfocato
 };

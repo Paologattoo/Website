@@ -31,7 +31,16 @@ for (const [nome, modifiche] of Object.entries(varianti)) {
   const inputProps = {...base, ...resto, video: copiaClip(sorgenteVariante, nome)};
   const composition = await selectComposition({serveUrl, id: 'Reel', inputProps, browserExecutable: BROWSER});
   const grezzo = path.join(cartella, 'lavoro', `remotion-${nome}.mp4`);
-  await renderMedia({composition, serveUrl, codec: 'h264', crf: 18, outputLocation: grezzo, inputProps, browserExecutable: BROWSER});
+  // Il primo avvio a freddo del browser a volte fallisce: si riprova fino a 3 volte
+  for (let tentativo = 1; ; tentativo++) {
+    try {
+      await renderMedia({composition, serveUrl, codec: 'h264', crf: 18, outputLocation: grezzo, inputProps, browserExecutable: BROWSER, timeoutInMilliseconds: 120000});
+      break;
+    } catch (e) {
+      if (tentativo === 3) throw e;
+      console.log(`Tentativo ${tentativo} fallito (${e.message.split('\n')[0]}), riprovo...`);
+    }
+  }
   // Volume standard social (-14 LUFS) e file pronto per Instagram/TikTok
   const finale = path.join(cartella, `finale-${nome}.mp4`);
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', grezzo, '-c:v', 'copy', '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', finale]);

@@ -10,6 +10,7 @@ export const Reel: React.FC<ReelProps> = (p) => {
   const durataVideo = Math.round((p.fine - p.inizio) * fps);
   const t = frame / fps; // secondi sulla timeline del reel
   const evidenzia = p.colori?.evidenzia ?? '#FFC93C';
+  const sfocato = p.layout === 'sfondo-sfocato';
 
   // Zoom: leggero avvicinamento continuo + "punch" a molla nei momenti indicati
   const lento = p.zoomLento === false ? 1 : interpolate(frame, [0, durataVideo], [1, 1.06]);
@@ -25,16 +26,23 @@ export const Reel: React.FC<ReelProps> = (p) => {
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
       <Sequence durationInFrames={durataVideo}>
-        <AbsoluteFill style={{transform: `scale(${lento * punch})`, transformOrigin: '50% 35%'}}>
-          <OffthreadVideo
-            src={staticFile(p.video)}
-            trimBefore={Math.round(p.inizio * fps)}
-            volume={p.volumeVideo ?? 1}
-            style={{width: '100%', height: '100%', objectFit: 'cover', filter: p.filtro ?? 'saturate(1.1) contrast(1.05) sepia(0.06)'}}
-          />
+        {sfocato ? (
+          <AbsoluteFill>
+            <OffthreadVideo src={staticFile(p.video)} trimBefore={Math.round(p.inizio * fps)} muted style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(40px) brightness(0.55) saturate(1.2)', transform: 'scale(1.2)'}} />
+          </AbsoluteFill>
+        ) : null}
+        <AbsoluteFill style={sfocato ? {top: 430, height: 810, overflow: 'hidden', borderRadius: 28, left: 0, right: 0, boxShadow: '0 20px 60px rgba(0,0,0,.6)'} : undefined}>
+          <AbsoluteFill style={{transform: `scale(${lento * punch})`, transformOrigin: sfocato ? '50% 40%' : '50% 35%'}}>
+            <OffthreadVideo
+              src={staticFile(p.video)}
+              trimBefore={Math.round(p.inizio * fps)}
+              volume={p.volumeVideo ?? 1}
+              style={{width: '100%', height: '100%', objectFit: 'cover', filter: p.filtro ?? 'saturate(1.1) contrast(1.05) sepia(0.06)'}}
+            />
+          </AbsoluteFill>
         </AbsoluteFill>
         {p.gancio ? <Gancio testo={p.gancio.testo} durata={p.gancio.durata ?? 2} colore={evidenzia} /> : null}
-        <Sottotitoli parole={p.parole} inizio={p.inizio} t={t} gruppo={p.paroleInsieme ?? 3} colore={evidenzia} />
+        <Sottotitoli parole={p.parole} inizio={p.inizio} t={t} gruppo={p.paroleInsieme ?? 3} colore={evidenzia} top={sfocato ? 1290 : 1180} />
         {(p.emoji ?? []).map((e, i) => (
           <Sequence key={i} from={Math.round((e.a - p.inizio) * fps)} durationInFrames={Math.round((e.durata ?? 1.2) * fps)}>
             <EmojiPop emoji={e.emoji} x={e.x ?? 760} y={e.y ?? 520} />
@@ -59,7 +67,7 @@ export const Reel: React.FC<ReelProps> = (p) => {
 };
 
 // Sottotitoli a gruppi di parole: la parola detta in quel momento si accende e "salta"
-const Sottotitoli: React.FC<{parole: Parola[]; inizio: number; t: number; gruppo: number; colore: string}> = ({parole, inizio, t, gruppo, colore}) => {
+const Sottotitoli: React.FC<{parole: Parola[]; inizio: number; t: number; gruppo: number; colore: string; top: number}> = ({parole, inizio, t, gruppo, colore, top}) => {
   const {fps} = useVideoConfig();
   const ts = t + inizio; // secondi del girato originale
   const gruppi: Parola[][] = [];
@@ -68,7 +76,7 @@ const Sottotitoli: React.FC<{parole: Parola[]; inizio: number; t: number; gruppo
   if (!g) return null;
   const entrata = spring({frame: Math.round((ts - g[0].inizio) * fps), fps, config: {damping: 14, stiffness: 200}});
   return (
-    <div style={{position: 'absolute', top: 1180, left: 70, right: 170, textAlign: 'center', transform: `scale(${0.85 + 0.15 * entrata})`}}>
+    <div style={{position: 'absolute', top, left: 70, right: 170, textAlign: 'center', transform: `scale(${0.85 + 0.15 * entrata})`}}>
       {g.map((w, i) => {
         const attiva = ts >= w.inizio && ts < w.fine + 0.05;
         const pop = attiva ? spring({frame: Math.round((ts - w.inizio) * fps), fps, config: {damping: 10, stiffness: 260}}) : 0;

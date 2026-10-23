@@ -1,0 +1,17 @@
+{
+  "sorgente": "lavoro/base.mp4",
+  "inizio": 0.3,
+  "fine": 6.23,
+  "parole": [],
+  "layout": "sfondo-sfocato",
+  "zoom": [{"a": 0.38, "scala": 1.12, "durata": 1.4}, {"a": 2.57, "scala": 1.15, "durata": 1.1}, {"a": 4.44, "scala": 1.2, "durata": 0.9}, {"a": 5.72, "scala": 1.1, "durata": 0.5}],
+  "emoji": [{"emoji": "👋", "a": 4.45, "durata": 1.0, "x": 780, "y": 300}],
+  "suoni": [
+    {"file": "sfx/whoosh.wav", "a": 0.33, "volume": 0.4},
+    {"file": "sfx/whoosh.wav", "a": 2.52, "volume": 0.4},
+    {"file": "sfx/whoosh.wav", "a": 4.39, "volume": 0.45},
+    {"file": "sfx/pop.wav", "a": 4.45, "volume": 0.5}
+  ],
+  "filtro": "saturate(1.08) contrast(1.06) brightness(1.02)",
+  "varianti": {"A": {}, "B": {"layout": "riempi", "emoji": [{"emoji": "👋", "a": 4.45, "durata": 1.0, "x": 760, "y": 420}]}}
+}
