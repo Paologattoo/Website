@@ -5,7 +5,7 @@ argument-hint: [richiesta, es. "3 reel per Halloween per portare gente in negozi
 
 Richiesta: $ARGUMENTS
 
-Lavora sempre in **italiano**. Il team produce solo idee, testi e inquadrature: non montare, non modificare e non generare video o immagini.
+Lavora sempre in **italiano**. Qui il team produce solo idee, testi e inquadrature: non montare e non generare video o immagini (il montaggio si fa dopo, con `/monta`).
 
 ## 1. Leggi il brand
 Leggi `brand/negozio.md`. Se ci sono campi `[DA COMPILARE]` importanti (nome, città, prodotti di punta), segnalalo in una riga e prosegui.
@@ -66,3 +66,4 @@ Crea **una scheda per ogni contenuto** in `schede/AAAA-MM-GG-[titolo].md` (data 
 
 ## 5. Chiudi
 Mostra l'elenco dei file creati e, per ogni contenuto, una riga con titolo + frase di Giulia + gancio scelto.
+Ricorda che, dopo aver girato, le clip vanno in `girato/[titolo]/` con i nomi del Regista e poi si lancia `/monta [titolo]`.

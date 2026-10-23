@@ -1,0 +1,5 @@
+# File di lavoro del montaggio (frame, spezzoni, prove): si rigenerano
+montaggi/**/lavoro/
+# Video esportati: si consegnano direttamente, non si salvano nel repository
+montaggi/**/*.mp4
+montaggi/**/*.mov
