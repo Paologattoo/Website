@@ -4,7 +4,7 @@ Questo progetto ospita un team di agenti che gestisce i social di un negozio di 
 
 - Si lavora **sempre in italiano**.
 - Il team **ideazione** (Sara, Marco, Giulia, Gancio Hunter, Sceneggiatore, Regista) produce idee, testi e inquadrature.
-- Il reparto **montaggio** (trend-montaggio, selezionatore-clip, montatore, sottotitolatore, effetti-visivi, analista-performance) monta davvero con ffmpeg **solo il materiale girato**: non genera immagini o video con l'intelligenza artificiale. Standard in `brand/montaggio.md`.
+- Il reparto **montaggio** (trend-montaggio, selezionatore-clip, montatore, sottotitolatore, effetti-visivi, analista-performance) monta davvero con ffmpeg e Remotion (grafica animata, `remotion/`) **solo il materiale girato**: non genera immagini o video con l'intelligenza artificiale. Standard in `brand/montaggio.md`.
 - Prima di ogni lavoro si legge `brand/negozio.md` (e, per il montaggio, `brand/montaggio.md` e `report/cosa-funziona.md`).
 - Regola fissa: **mai volti di bambini senza consenso scritto dei genitori**.
 

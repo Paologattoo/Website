@@ -11,7 +11,8 @@ Lavora sempre in **italiano**. Il reparto montaggio monta **solo il materiale gi
 - Leggi `brand/negozio.md` e `brand/montaggio.md`.
 - Trova la scheda `schede/*-[titolo].md`. Se $ARGUMENTS è vuoto o non corrisponde a nessuna scheda, mostra l'elenco delle schede e chiedi quale montare.
 - Controlla che `girato/[titolo]/` contenga le clip (`.mp4`, `.mov`, `.m4v`). Se è vuota o non esiste, **fermati** e spiega come caricarle: nomi come nella tabella del Regista (`scena1.mp4`, `scena2.mp4`…), caricate nella cartella `girato/[titolo]/` del repository da GitHub (dal sito, max 25 MB a file: meglio girare in 1080p) oppure con un link di download diretto (Google Drive pubblico, WeTransfer, Dropbox) che scarichi tu in quella cartella.
-- Controlla che ffmpeg ci sia (`ffmpeg -version`). Se manca, installalo (`apt-get install -y ffmpeg`).
+- Controlla che ffmpeg ci sia (`ffmpeg -version`; se manca `apt-get install -y ffmpeg`), installa Remotion (`cd remotion && npm ci`) e la trascrizione (`pip install -r remotion/requirements.txt`).
+- Se il video arriva in chat con risoluzione bassa (sotto 1080 px di larghezza in verticale), avvisa che il risultato sarà sfocato e chiedi l'originale con un link (WeTransfer, Google Drive, Dropbox).
 
 ## 2. Lancia gli agenti in ordine
 Strumento Agent, un `subagent_type` dopo l'altro. Ogni agente parte senza memoria: nel prompt passagli **il titolo, il percorso della scheda, la cartella del girato e il testo completo** di quello che hanno prodotto gli agenti precedenti.
@@ -21,8 +22,8 @@ Strumento Agent, un `subagent_type` dopo l'altro. Ogni agente parte senza memori
    - Se segnala scene **da rigirare** essenziali, fermati e mostrami cosa rigirare e come.
    - Se segnala **Regola minori: ATTENZIONE** e non c'è modo di tagliare o sfocare, fermati e chiedi: rigirare oppure confermare per iscritto che c'è il consenso scritto dei genitori (da annotare in `girato/[titolo]/consensi.md`, senza nomi).
 3. **`montatore`** → `lavoro/base-A.mp4`, `lavoro/base-B.mp4` + sezione Montaggio in `note-montaggio.md`.
-4. **`effetti-visivi`** → `lavoro/fx-A.mp4`, `lavoro/fx-B.mp4` + secondi aggiornati delle scene.
-5. **`sottotitolatore`** (sempre per ultimo, così zoom ed effetti non tagliano il testo) → `.srt`, `.ass`, `finale-A.mp4`, `finale-B.mp4` + controllo finale.
+4. **`effetti-visivi`** → zoom, emoji, suoni, colore e finale in `reel.json` (+ eventuali sfocature e velocità con ffmpeg).
+5. **`sottotitolatore`** (sempre per ultimo) → trascrizione, `.srt`, `parole` e `gancio` in `reel.json`, esportazione Remotion di `finale-A.mp4` e `finale-B.mp4` + controllo finale.
 
 Se l'ultimo controllo dice **Regola minori: ATTENZIONE**, non consegnare: fai correggere all'agente indicato e ricontrolla.
 

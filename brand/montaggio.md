@@ -16,9 +16,11 @@
 
 `[titolo-scheda]` è il nome del file in `schede/` senza data e senza `.md` (es. `schede/2026-10-23-che-taglia-porta.md` → `che-taglia-porta`).
 
-## Ordine di lavoro
-`trend-montaggio` (se serve) → `selezionatore-clip` → `montatore` (`lavoro/base-*.mp4`) → `effetti-visivi` (`lavoro/fx-*.mp4`) → `sottotitolatore` (`finale-*.mp4`).
-I sottotitoli vanno **per ultimi**: se si applicano zoom o ritagli dopo, il testo viene ingrandito e tagliato.
+## Ordine di lavoro e strumenti
+`trend-montaggio` (se serve) → `selezionatore-clip` → `montatore` (ffmpeg: `lavoro/base-*.mp4`) → `effetti-visivi` (scrive zoom, emoji, suoni, colore e finale in `reel.json`) → `sottotitolatore` (trascrive, completa `reel.json` ed esporta i `finale-*.mp4` con **Remotion**).
+- **ffmpeg**: tagli, unione delle clip, formato, pulizia audio.
+- **Remotion** (`remotion/`, istruzioni in `remotion/README.md`): tutta la grafica animata (sottotitoli parola per parola, gancio, zoom a scatto, emoji, effetti sonori, barra, schermata finale). La grafica si applica sopra gli zoom, quindi il testo non viene mai tagliato.
+- **Trascrizione**: `remotion/trascrivi.py` (faster-whisper; serve `huggingface.co` tra i domini consentiti dell'ambiente). Se non è raggiungibile, si usa il testo della scheda o quello dettato da Giorgio, e lo si segnala.
 
 ## Formato di esportazione (uguale per Reel e TikTok)
 - **1080×1920, 9:16, 30 fps**, H.264 (`libx264`, `-crf 20 -preset medium`, `-pix_fmt yuv420p`, `-movflags +faststart`).
@@ -34,9 +36,10 @@ L'interfaccia di Instagram e TikTok copre parte dello schermo. Su 1080×1920:
 Testi e sottotitoli stanno nella fascia centrale, tra 250 e 1470 px in verticale.
 
 ## Stile provvisorio (finché `brand/negozio.md` non ha colori e font)
-- Font: `DejaVu Sans Bold` (installato; percorso `/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf`).
-- Sottotitoli: bianco, contorno nero 4 px, max 2 righe, max ~32 caratteri per riga.
-- Testo a schermo del gancio: grande (90-110 px), su riquadro semitrasparente, nei primi 2 s.
+- Font: **Montserrat Black** (in Remotion); con ffmpeg `DejaVu Sans Bold`.
+- Sottotitoli: maiuscolo, bianco con contorno nero, 3 parole alla volta, la parola detta si accende in giallo `#FFC93C`.
+- Gancio: riquadro giallo con testo nero nei primi 2 s.
+- Effetti sonori: whoosh sugli zoom, pop sulle emoji, ding sulla schermata finale (volume basso).
 
 ## Varianti A/B
 Ogni montaggio esce in **due versioni** che differiscono per **una sola variabile**, così si capisce cosa ha fatto la differenza:
