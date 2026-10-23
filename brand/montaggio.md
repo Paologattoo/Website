@@ -20,7 +20,7 @@
 `trend-montaggio` (se serve) → `selezionatore-clip` → `montatore` (ffmpeg: `lavoro/base-*.mp4`) → `effetti-visivi` (scrive zoom, emoji, suoni, colore e finale in `reel.json`) → `sottotitolatore` (trascrive, completa `reel.json` ed esporta i `finale-*.mp4` con **Remotion**).
 - **ffmpeg**: tagli, unione delle clip, formato, pulizia audio.
 - **Remotion** (`remotion/`, istruzioni in `remotion/README.md`): tutta la grafica animata (sottotitoli parola per parola, gancio, zoom a scatto, emoji, effetti sonori, barra, schermata finale). La grafica si applica sopra gli zoom, quindi il testo non viene mai tagliato.
-- **Trascrizione**: `remotion/trascrivi.py` (faster-whisper; serve `huggingface.co` tra i domini consentiti dell'ambiente). Se non è raggiungibile, si usa il testo della scheda o quello dettato da Giorgio, e lo si segnala.
+- **Trascrizione**: `remotion/trascrivi.py` (Parakeet v3 via sherpa-onnx, modello scaricato da GitHub). Se non funziona, si usa il testo della scheda o quello dettato da Giorgio, e lo si segnala.
 
 ## Formato di esportazione (uguale per Reel e TikTok)
 - **1080×1920, 9:16, 30 fps**, H.264 (`libx264`, `-crf 20 -preset medium`, `-pix_fmt yuv420p`, `-movflags +faststart`).

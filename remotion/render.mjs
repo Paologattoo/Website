@@ -29,6 +29,8 @@ fs.mkdirSync(path.join(cartella, 'lavoro'), {recursive: true});
 for (const [nome, modifiche] of Object.entries(varianti)) {
   const {sorgente: sorgenteVariante = sorgente, ...resto} = modifiche;
   const inputProps = {...base, ...resto, video: copiaClip(sorgenteVariante, nome)};
+  // "parole" può essere il percorso del file creato da trascrivi.py
+  if (typeof inputProps.parole === 'string') inputProps.parole = JSON.parse(fs.readFileSync(path.resolve(cartella, inputProps.parole), 'utf8'));
   const composition = await selectComposition({serveUrl, id: 'Reel', inputProps, browserExecutable: BROWSER});
   const grezzo = path.join(cartella, 'lavoro', `remotion-${nome}.mp4`);
   // Il primo avvio a freddo del browser a volte fallisce: si riprova fino a 3 volte

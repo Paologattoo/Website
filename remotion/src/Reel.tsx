@@ -42,7 +42,7 @@ export const Reel: React.FC<ReelProps> = (p) => {
           </AbsoluteFill>
         </AbsoluteFill>
         {p.gancio ? <Gancio testo={p.gancio.testo} durata={p.gancio.durata ?? 2} colore={evidenzia} /> : null}
-        <Sottotitoli parole={p.parole} inizio={p.inizio} t={t} gruppo={p.paroleInsieme ?? 3} colore={evidenzia} top={sfocato ? 1290 : 1180} />
+        <Sottotitoli parole={p.parole} inizio={p.inizio} t={t} gruppo={p.paroleInsieme ?? 3} colore={evidenzia} top={sfocato ? 1290 : 1330} />
         {(p.emoji ?? []).map((e, i) => (
           <Sequence key={i} from={Math.round((e.a - p.inizio) * fps)} durationInFrames={Math.round((e.durata ?? 1.2) * fps)}>
             <EmojiPop emoji={e.emoji} x={e.x ?? 760} y={e.y ?? 520} />
@@ -70,8 +70,17 @@ export const Reel: React.FC<ReelProps> = (p) => {
 const Sottotitoli: React.FC<{parole: Parola[]; inizio: number; t: number; gruppo: number; colore: string; top: number}> = ({parole, inizio, t, gruppo, colore, top}) => {
   const {fps} = useVideoConfig();
   const ts = t + inizio; // secondi del girato originale
+  // Gruppi di massimo `gruppo` parole, che si chiudono anche a fine frase (virgola, punto...)
   const gruppi: Parola[][] = [];
-  for (let i = 0; i < parole.length; i += gruppo) gruppi.push(parole.slice(i, i + gruppo));
+  let corrente: Parola[] = [];
+  for (const w of parole) {
+    corrente.push(w);
+    if (corrente.length === gruppo || /[,.;:!?…]$/.test(w.testo)) {
+      gruppi.push(corrente);
+      corrente = [];
+    }
+  }
+  if (corrente.length) gruppi.push(corrente);
   const g = gruppi.find((gr, i) => ts >= gr[0].inizio && ts < (gruppi[i + 1]?.[0].inizio ?? gr[gr.length - 1].fine + 0.4));
   if (!g) return null;
   const entrata = spring({frame: Math.round((ts - g[0].inizio) * fps), fps, config: {damping: 14, stiffness: 200}});
@@ -82,7 +91,7 @@ const Sottotitoli: React.FC<{parole: Parola[]; inizio: number; t: number; gruppo
         const pop = attiva ? spring({frame: Math.round((ts - w.inizio) * fps), fps, config: {damping: 10, stiffness: 260}}) : 0;
         return (
           <span key={i} style={{fontFamily: FONT, fontWeight: 900, fontSize: 86, lineHeight: 1.15, textTransform: 'uppercase', color: attiva || w.evidenzia ? colore : '#fff', textShadow: BIANCO_CONTORNO, display: 'inline-block', margin: '0 18px', transformOrigin: '50% 60%', transform: `scale(${1 + 0.07 * pop}) rotate(${w.evidenzia && attiva ? -3 : 0}deg)`}}>
-            {w.testo}
+            {w.testo.replace(/[,.;:…]+$/, '')}
           </span>
         );
       })}

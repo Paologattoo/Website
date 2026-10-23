@@ -10,5 +10,5 @@ Origine: ripresa caricata in chat, 6,2 s, 480×360 orizzontale (compressa dal ca
   - barra di avanzamento e colore leggermente più caldo;
   - volume -14,3 LUFS.
 - **Variabile A/B:** il formato. A = video orizzontale intero al centro su sfondo sfocato (perde meno qualità). B = ritaglio verticale a tutto schermo (volto più grande, più sfocato).
-- **Mancano:** sottotitoli, gancio e schermata finale. La trascrizione è bloccata perché `huggingface.co` non è raggiungibile e non so cosa viene detto: si aggiungono in `reel.json` (`parole`, `gancio`, `finale`) appena c'è il testo.
+- **Sottotitoli**: trascritti con Parakeet (`lavoro/parole.json`): "Allora, monta questo video, scrivi qua qualcosa, fai un zoom e basta." Evidenziate: video, qualcosa, zoom. Zoom forte (1,35×) sulla parola "zoom", ✍️ su "scrivi", 🔍 su "zoom".
 - **Regola minori:** OK, compare solo un ragazzo che sembra maggiorenne.

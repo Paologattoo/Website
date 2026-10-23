@@ -12,12 +12,12 @@ Remotion crea il video finale con la grafica animata:
 ## Preparazione (a ogni nuova sessione)
 ```bash
 cd remotion && npm ci            # Remotion
-pip install -r requirements.txt  # trascrizione (faster-whisper)
+pip install -r requirements.txt  # trascrizione (sherpa-onnx)
 ```
-La trascrizione scarica il modello da `huggingface.co`, che deve essere tra i domini consentiti dell'ambiente cloud.
+La trascrizione usa **NVIDIA Parakeet TDT 0.6B v3** (italiano compreso, tempi di ogni parola) tramite sherpa-onnx. La prima volta scarica il modello (~490 MB) dalle release GitHub di `k2-fsa/sherpa-onnx` in `~/.cache/modelli`: non serve Hugging Face.
 
 ## Flusso
-1. `python3 trascrivi.py ../montaggi/[titolo]/lavoro/base-A.mp4 ../montaggi/[titolo]/lavoro/parole-A.json` → tempi di ogni parola.
+1. `python3 trascrivi.py ../montaggi/[titolo]/lavoro/base-A.mp4 ../montaggi/[titolo]/lavoro/parole-A.json` → tempi di ogni parola. Correggi a mano nomi e parole sbagliate e aggiungi `"evidenzia": true` alle parole chiave. In `reel.json` puoi mettere `"parole": "lavoro/parole-A.json"`.
 2. Scrivi `montaggi/[titolo]/reel.json` (vedi sotto). I tempi sono in **secondi del file `sorgente`**.
 3. `node render.mjs ../montaggi/[titolo]/reel.json` → `montaggi/[titolo]/finale-A.mp4`, `finale-B.mp4` (1080×1920, 30 fps, -14 LUFS).
 4. Per vedere e regolare a mano: `npm run studio`.
@@ -41,4 +41,4 @@ La trascrizione scarica il modello da `huggingface.co`, che deve essere tra i do
   "varianti": {"A": {}, "B": {"sorgente": "lavoro/base-B.mp4", "gancio": {"testo": "Altro gancio"}}}
 }
 ```
-Ogni variante sovrascrive solo i campi che indica. Zone sicure: i sottotitoli partono a 1180 px dall'alto, il gancio a 300 px, entrambi lontani dai pulsanti delle app.
+Ogni variante sovrascrive solo i campi che indica. `"layout": "sfondo-sfocato"` mette un video orizzontale intero al centro su sfondo sfocato (utile per video orizzontali o a bassa risoluzione). Zone sicure: i sottotitoli partono a 1330 px dall'alto (1290 con sfondo sfocato), il gancio a 300 px, entrambi lontani dai pulsanti delle app.
