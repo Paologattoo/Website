@@ -69,5 +69,7 @@ if __name__ == "__main__":
     parole = trascrivi(video)
     with open(uscita, "w", encoding="utf-8") as f:
         json.dump(parole, f, ensure_ascii=False, indent=1)
+    testo = " ".join(p["testo"] for p in parole)
+    # solo un assaggio: il testo intero si legge dal JSON, a pezzi (token saver)
     print(f"{len(parole)} parole → {uscita}")
-    print(" ".join(p["testo"] for p in parole))
+    print(testo if len(testo) <= 400 else testo[:400] + " …")

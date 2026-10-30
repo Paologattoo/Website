@@ -22,3 +22,5 @@ Regole per Claude:
 - leggere `riepilogo.md` e le immagini elencate, **mai** i frame in `prep/frame/`;
 - in `frasi.tsv` cercare solo i tratti che servono (`awk`, `grep`), mai leggerlo tutto;
 - `volti.jpg` serve al controllo minori: un volto segnalato si guarda lì, ingrandito.
+
+`hook_read.py` è collegato in `.claude/settings.json`: blocca `Read` su immagini in cartelle `frame/` e su file di testo oltre 60 KB letti per intero, e suggerisce lo script giusto. Per disattivarlo: `/hooks`.

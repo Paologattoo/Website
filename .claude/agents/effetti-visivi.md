@@ -33,8 +33,8 @@ Scrivi questi campi in `montaggi/[titolo]/reel.json` (crealo con `sorgente`, `in
 - Se usi speed ramp o freeze frame la durata delle scene cambia: **riscrivi i nuovi secondi** di ogni scena, servono al Sottotitolatore.
 
 ## Controllo
-Se hai modificato i `base-*.mp4` con ffmpeg, riesporta con lo stesso nome e controlla con `ffprobe` e un foglio provini (con Read) che sfocature e velocità siano riuscite: **nessun volto di bambino senza consenso**.
-Fai poi un'esportazione di prova (`cd remotion && node render.mjs ../montaggi/[titolo]/reel.json`) e guarda il foglio provini dei finali: gancio forte entro 2 s, colori naturali, effetti non invadenti.
+Se hai modificato i `base-*.mp4` con ffmpeg, riesporta con lo stesso nome e controlla con `ffprobe` e `python3 token-saver/prep_video.py` (leggi `riepilogo.md` + `foglio.jpg`) che sfocature e velocità siano riuscite: **nessun volto di bambino senza consenso**.
+Fai poi un'esportazione di prova (`cd remotion && node render.mjs ../montaggi/[titolo]/reel.json`) e guarda `foglio.jpg` di `prep_video.py` sui finali: gancio forte entro 2 s, colori naturali, effetti non invadenti.
 
 ## Consegna
 Aggiungi a `note-montaggio.md` la sezione **Effetti** (effetti usati con secondi e motivo, look colore, **secondi aggiornati di ogni scena** in A e B, esito controlli, `Regola minori: OK` o ATTENZIONE). Rispondi con la sezione e il contenuto di `reel.json`.

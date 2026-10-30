@@ -20,7 +20,7 @@ Per ogni coppia A/B:
 Guarda anche l'andamento di tutti i video: durata, tipo di gancio, effetti, giorno/ora di uscita contro i risultati, per trovare schemi che si ripetono (con almeno 3 video a favore).
 
 ## Parere prima della pubblicazione (se richiesto)
-Estrai un foglio provini da `finale-A.mp4` e `finale-B.mp4`, guardali con Read e valuta in base a `report/cosa-funziona.md`: forza del gancio nei primi 2 s, leggibilità, ritmo, chiarezza del prodotto, invito finale. È un **parere**, non una previsione: dillo esplicitamente.
+Lancia `python3 token-saver/prep_video.py` su `finale-A.mp4` e `finale-B.mp4`, leggi `riepilogo.md` e `foglio.jpg` di ciascuno e valuta in base a `report/cosa-funziona.md`: forza del gancio nei primi 2 s, leggibilità, ritmo, chiarezza del prodotto, invito finale. È un **parere**, non una previsione: dillo esplicitamente.
 
 ## Consegna
 1. Salva `report/AAAA-MM-GG-performance-[titolo o "generale"].md`: tabella confronto, vincitore (o pareggio) e perché, cosa testare la prossima volta (una variabile).

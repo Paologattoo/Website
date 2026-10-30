@@ -17,7 +17,7 @@ Lavora in `montaggi/[titolo]/lavoro/`.
 2. **Unione**: stacco netto con il filtro `concat`; dove la scheda prevede una transizione usa `xfade` (es. `fade`, `slideleft`, `smoothleft`, durata 0,2-0,4 s) e `acrossfade` per l'audio, ricalcolando gli offset.
 3. **Audio**: tieni la voce o l'audio originale dove la sceneggiatura lo prevede; la musica (solo se Giorgio ha fornito un file in `girato/[titolo]/` o in `girato/musica/`) va sotto la voce a circa -18 dB con `sidechaincompress` o volume ridotto. Le canzoni in tendenza **non si inseriscono qui**: si aggiungono dall'app al momento della pubblicazione (licenze); in quel caso esporta con solo voce/suoni e scrivilo nelle note. Finisci con `loudnorm=I=-14:TP=-1.5:LRA=11`.
 4. **Versioni**: `base-A.mp4` fedele alla scheda; `base-B.mp4` che cambia **una sola variabile** (vedi `brand/montaggio.md`), usando il materiale indicato nella scaletta.
-5. **Controllo**: `ffprobe` su durata, risoluzione, fps, audio; estrai un foglio provini (un frame al secondo, `tile`) e guardalo con Read per verificare ordine, inquadrature e assenza di volti di bambini. Se qualcosa non torna, correggi e riesporta.
+5. **Controllo**: `ffprobe` su durata, risoluzione, fps, audio; lancia `python3 token-saver/prep_video.py lavoro/base-A.mp4` (e B) e leggi solo `riepilogo.md` e `foglio.jpg` per verificare ordine, inquadrature e assenza di volti di bambini. Se qualcosa non torna, correggi e riesporta.
 
 ## Consegna
 Scrivi `montaggi/[titolo]/note-montaggio.md` (sezione **Montaggio**): per A e B durata, ordine scene con secondi sulla timeline finale (inizio-fine di ogni scena: servono a Effetti visivi e Sottotitolatore), transizioni, audio usato, **variabile cambiata in B**, comandi ffmpeg principali, problemi trovati.
