@@ -1,0 +1,209 @@
+[
+ {
+  "id": "s1_1",
+  "sez": 1,
+  "text": "Guarda il mondo intorno a te.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.2,
+  "sub": "Guarda il mondo intorno a te."
+ },
+ {
+  "id": "s1_2",
+  "sez": 1,
+  "text": "E se ti dicessero che tutto ciò che tocchi, vedi e ami è solo una simulazione, una gabbia cosmica progettata per tenerti prigioniero?",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.2,
+  "sub": "E se ti dicessero che tutto ciò che tocchi, vedi e ami è solo una simulazione, una gabbia cosmica progettata per tenerti prigioniero?"
+ },
+ {
+  "id": "s1_3",
+  "sez": 1,
+  "text": "Tu non appartieni a questo piano materiale.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.2,
+  "sub": "Tu non appartieni a questo piano materiale."
+ },
+ {
+  "id": "s1_4",
+  "sez": 1,
+  "text": "Tu provieni dal Pleroma, il regno della pura Luce infinita.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.2,
+  "sub": "Tu provieni dal Pleroma, il regno della pura Luce infinita."
+ },
+ {
+  "id": "s2_1",
+  "sez": 2,
+  "text": "Tutto è iniziato con un'emanazione divina chiamata Pìstiss Sofìa, la Saggezza.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.05,
+  "sub": "Tutto è iniziato con un'emanazione divina chiamata Pistis Sophia, la Saggezza."
+ },
+ {
+  "id": "s2_2",
+  "sez": 2,
+  "text": "Desiderosa di comprendere il mistero assoluto del Creatore senza il Suo consenso, generò un'anomalia.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.05,
+  "sub": "Desiderosa di comprendere il mistero assoluto del Creatore senza il Suo consenso, generò un'anomalia."
+ },
+ {
+  "id": "s2_3",
+  "sez": 2,
+  "text": "Questo errore cosmico la fece precipitare dal paradiso direttamente nelle profondità oscure del Caos.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.05,
+  "sub": "Questo errore cosmico la fece precipitare dal paradiso direttamente nelle profondità oscure del Caos."
+ },
+ {
+  "id": "s3_1",
+  "sez": 3,
+  "text": "Da questo errore è nato Yaldabaoth, il Demiurgo.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Da questo errore è nato Yaldabaoth, il Demiurgo."
+ },
+ {
+  "id": "s3_2",
+  "sez": 3,
+  "text": "Una mostruosità con il corpo di serpente e la testa di leone.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Una mostruosità con il corpo di serpente e la testa di leone."
+ },
+ {
+  "id": "s3_3",
+  "sez": 3,
+  "text": "Cièco. Arrogante e folle, urlò nel vuoto: Io sono l'unico Dio.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Cieco, arrogante e folle, urlò nel vuoto: Io sono l'unico Dio."
+ },
+ {
+  "id": "s3_4",
+  "sez": 3,
+  "text": "Iniziò a generare gli Arconti, parassiti dimensionali al suo servizio.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Iniziò a generare gli Arconti, parassiti dimensionali al suo servizio."
+ },
+ {
+  "id": "s4_1",
+  "sez": 4,
+  "text": "Gli Arconti non possono creare la vita vera, possono solo imitare.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Gli Arconti non possono creare la vita vera, possono solo imitare."
+ },
+ {
+  "id": "s4_2",
+  "sez": 4,
+  "text": "Hanno forgiato questo universo materiale e il corpo umano, usandolo come una prigione di carne.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Hanno forgiato questo universo materiale e il corpo umano, usandolo come una prigione di carne."
+ },
+ {
+  "id": "s4_3",
+  "sez": 4,
+  "text": "Ma a loro insaputa, una scintilla della luce divina di Sophia è rimasta intrappolata dentro di te.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Ma a loro insaputa, una scintilla della luce divina di Sophia è rimasta intrappolata dentro di te."
+ },
+ {
+  "id": "s4_4",
+  "sez": 4,
+  "text": "Sèi un dio frammentato, chiuso in una cella biologica.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Sei un dio frammentato, chiuso in una cella biologica."
+ },
+ {
+  "id": "s5_1",
+  "sez": 5,
+  "text": "Questi esseri si nutrono delle tue emozioni a bassa frequenza: paura, dolore, rabbia.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.12,
+  "sub": "Questi esseri si nutrono delle tue emozioni a bassa frequenza: paura, dolore, rabbia."
+ },
+ {
+  "id": "s5_2",
+  "sez": 5,
+  "text": "Hanno costruito la società e il ciclo delle reincarnazioni come un sistema di raccolta energetica.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.12,
+  "sub": "Hanno costruito la società e il ciclo delle reincarnazioni come un sistema di raccolta energetica."
+ },
+ {
+  "id": "s5_3",
+  "sez": 5,
+  "text": "Quando muori, quella luce bianca che vedi è un inganno degli Arconti per cancellare la tua memoria e rimandarti nella Matrix.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.12,
+  "sub": "Quando muori, quella luce bianca che vedi è un inganno degli Arconti per cancellare la tua memoria e rimandarti nella Matrix."
+ },
+ {
+  "id": "s6_1",
+  "sez": 6,
+  "text": "Ma c'è una via d'uscita.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Ma c'è una via d'uscita."
+ },
+ {
+  "id": "s6_2",
+  "sez": 6,
+  "text": "Pìstiss Sofìa si è pentita e ha inviato la Gnòsi, la conoscenza segreta.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Pistis Sophia si è pentita e ha inviato la Gnosi, la conoscenza segreta."
+ },
+ {
+  "id": "s6_3",
+  "sez": 6,
+  "text": "La salvezza non arriva pregando i falsi dèi, ma ricordando chi sei veramente.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "La salvezza non arriva pregando i falsi dèi, ma ricordando chi sei veramente."
+ },
+ {
+  "id": "s6_4",
+  "sez": 6,
+  "text": "Il velo si sta strappando.",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Il velo si sta strappando."
+ },
+ {
+  "id": "s6_5",
+  "sez": 6,
+  "text": "Tu… sei pronto a uscire dalla Matrix?",
+  "voice": "im_nicola",
+  "lang": "it",
+  "speed": 1.0,
+  "sub": "Tu… sei pronto a uscire dalla Matrix?"
+ }
+]
