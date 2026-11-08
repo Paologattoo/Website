@@ -4,7 +4,7 @@ Gli effetti di vetro (glass_tink, glass_crack, grind, weld) vengono da Lemo-Opus
 import os, sys, json, numpy as np, soundfile as sf, soxr
 LIB = os.environ.get('LIB', '/opt/tools/lemo-opuscar'); sys.path.insert(0, LIB)
 from core.audio.sfx import SR, t_, bp, lp, hp, noise, norm, compress, limit, add, roar as sfx_roar, thump
-from scipy.signal import fftconvolve
+from scipy.signal import fftconvolve, lfilter
 
 D = os.path.dirname(os.path.abspath(__file__))
 E = json.load(open(os.path.join(D, 'events.json'))); DUR = E['dur']; EV = E['ev']
@@ -37,9 +37,10 @@ def campana(m, v=.5, d=6.):
         y += a * np.sin(2 * np.pi * f * r * t + rng.uniform(0, 6)) * np.exp(-t / tau)
     return y * v * .3 * np.clip(t / .004, 0, 1)
 def arpa(m, v=.4, d=2.5):
-    f = hz(m); n = int(SR / f); buf = rng.uniform(-1, 1, n); out = np.zeros(int(d * SR))
-    for i in range(len(out)): out[i] = buf[i % n]; buf[i % n] = .5 * (buf[i % n] + buf[(i + 1) % n]) * .996
-    return lp(out, 5000) * v
+    # Karplus-Strong come filtro IIR (vettoriale): y[n] = x[n] + .498 (y[n-N] + y[n-N-1])
+    f = hz(m); n = int(SR / f); x = np.zeros(int(d * SR)); x[:n] = rng.uniform(-1, 1, n)
+    a = np.zeros(n + 2); a[0] = 1; a[n] = a[n + 1] = -.498
+    return lp(lfilter([1.0], a, x), 5000) * v * .5
 def glass_tink(v=1., f0=None, d=1.2, bright=1.):
     f0 = f0 or rng.uniform(2300, 3400); t = t_(d); y = np.zeros_like(t)
     for r, a, tau in [(1, 1, .5), (2.32, .6, .32), (4.25, .38, .2), (6.63, .22, .12), (9.38, .12, .07)]:
@@ -123,10 +124,14 @@ for e in EV:
     x, sr = sf.read(os.path.join(D, 'voce', 'wav', e['id'] + '.wav'))
     if x.ndim > 1: x = x.mean(1)
     x = soxr.resample(x, sr, SR); put(vo, x, e['t'])
-vo = np.stack([compress(vo[:, c], .2, 3) for c in range(2)], 1)
+def comprimi(x, thr=.2, ratio=3., rel=.08):   # compressore con inviluppo a un polo (vettoriale)
+    r = np.exp(-1 / (rel * SR)); env = lfilter([1 - r], [1, -r], np.abs(x))
+    return x * np.where(env > thr, (thr + (env - thr) / ratio) / np.maximum(env, 1e-9), 1.0)
+vo = np.stack([comprimi(vo[:, c]) for c in range(2)], 1)
 
 # ───────── mix: musica abbassata ~9 dB sotto la voce ─────────
-env = np.abs(vo).mean(1); k = int(.25 * SR); env = np.convolve(env, np.ones(k) / k, 'same'); duck = 1 - .64 * np.clip(env / (env.max() * .08 + 1e-9), 0, 1)
+from scipy.ndimage import uniform_filter1d
+env = uniform_filter1d(np.abs(vo).mean(1), int(.25 * SR)); duck = 1 - .64 * np.clip(env / (env.max() * .08 + 1e-9), 0, 1)
 mus = verb(mus, HALL, .45) * duck[:, None]; fx = verb(fx, HALL, .3)
 rms = lambda x: np.sqrt(np.mean(x[np.abs(x).sum(1) > 1e-4] ** 2)) if np.any(np.abs(x).sum(1) > 1e-4) else 1
 vo = verb(vo, HALL, .12)
