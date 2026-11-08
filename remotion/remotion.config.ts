@@ -1,4 +1,6 @@
 import {Config} from '@remotion/cli/config';
+// @ts-expect-error modulo JS senza tipi
+import {trovaBrowser} from './browser.mjs';
 
 Config.setVideoImageFormat('jpeg');
-Config.setBrowserExecutable('/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell');
+Config.setBrowserExecutable(trovaBrowser());

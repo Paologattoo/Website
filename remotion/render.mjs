@@ -5,8 +5,9 @@ import {renderMedia, selectComposition} from '@remotion/renderer';
 import {execFileSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import {trovaBrowser} from './browser.mjs';
 
-const BROWSER = '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell';
+const BROWSER = trovaBrowser();
 const file = process.argv[2];
 if (!file) throw new Error('Indica il file reel.json: node render.mjs ../montaggi/[titolo]/reel.json');
 const cartella = path.dirname(path.resolve(file));
