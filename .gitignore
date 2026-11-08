@@ -3,3 +3,5 @@ montaggi/**/lavoro/
 # Video esportati: si consegnano direttamente, non si salvano nel repository
 montaggi/**/*.mp4
 montaggi/**/*.mov
+# Film renderizzati: troppo grandi per git, si consegnano direttamente
+films/**/*.mp4
